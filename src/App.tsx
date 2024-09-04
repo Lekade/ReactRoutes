@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styles from "./components/Site.module.css";
-import {Link, Navigate, NavLink, Route, Routes} from "react-router-dom";
+import {Link, Navigate, NavLink, Route, Routes, Outlet} from "react-router-dom";
 import {Adidas} from "./components/pages/Adidas";
 import {Puma} from "./components/pages/Puma";
 import {Abibas} from "./components/pages/Abibas";
@@ -8,15 +8,8 @@ import {Error404} from "./components/pages/Error404";
 import {S} from "./components/pages/_styles"
 import Model from "./components/pages/Model";
 import {Prices} from "./components/pages/Prices";
+import {PATH} from "./routes/router";
 
-const PATH = {
-    PAGE1: "/adidas",
-    PAGE2: "/puma",
-    PAGE3: "/abibas",
-    PRICES: "/prices",
-    MODEL: "/:name/:id",
-    ERROR: "/*"
-}as const
 
 function App() {
 
@@ -26,13 +19,13 @@ function App() {
             <div className={styles.header}><h1>HEADER</h1></div>
             <div className={styles.body}>
                 <div className={styles.nav}>
-                    <S.NavWrapper><NavLink  to={PATH.PAGE1}>
+                    <S.NavWrapper><NavLink  to={PATH.ADIDAS}>
                         Adidas
                     </NavLink></S.NavWrapper>
-                    <S.NavWrapper><NavLink  to={PATH.PAGE2}>
+                    <S.NavWrapper><NavLink  to={PATH.PUMA}>
                         Puma
                     </NavLink></S.NavWrapper>
-                    <S.NavWrapper><NavLink to={PATH.PAGE3}>
+                    <S.NavWrapper><NavLink to={PATH.ABIBAS}>
                         Abibas
                     </NavLink></S.NavWrapper>
                     <S.NavWrapper><NavLink to={PATH.PRICES}>
@@ -46,19 +39,23 @@ function App() {
                     {/*</NavLink></div>*/}
                 </div>
                 <div className={styles.content}>
-                    {/* eslint-disable-next-line react/jsx-no-undef */}
-                    <Routes>
-                        <Route path="/" element={<Navigate to={PATH.PAGE1}/>}/>
+                    {/*СИНТАКСИС 6.4*/}
+                    <Outlet />
 
-                        <Route path={PATH.PAGE1} element={<Adidas/>}/>
-                        <Route path={PATH.PAGE2} element={<Puma/>}/>
-                        <Route path={PATH.PAGE3} element={<Abibas/>}/>
-                        <Route path={PATH.PRICES} element={<Prices/>}/>
-                        <Route path={PATH.MODEL} element={<Model/>}/>
+                    {/*СИНТАКСИС 6.0 - 6.2*/}
 
-                        <Route path={PATH.ERROR} element={<Error404/>}/>
-                        {/*<Route path="/*" element={<Navigate to={"/error404"}/>}/>*/}
-                    </Routes>
+                    {/*<Routes>*/}
+                    {/*    <Route path="/" element={<Navigate to={PATH.PAGE1}/>}/>*/}
+
+                    {/*    <Route path={PATH.PAGE1} element={<Adidas/>}/>*/}
+                    {/*    <Route path={PATH.PAGE2} element={<Puma/>}/>*/}
+                    {/*    <Route path={PATH.PAGE3} element={<Abibas/>}/>*/}
+                    {/*    <Route path={PATH.PRICES} element={<Prices/>}/>*/}
+                    {/*    <Route path={PATH.MODEL} element={<Model/>}/>*/}
+
+                    {/*    <Route path={PATH.ERROR} element={<Error404/>}/>*/}
+                    {/*    /!*<Route path="/*" element={<Navigate to={"/error404"}/>}/>*!/*/}
+                    {/*</Routes>*/}
                 </div>
             </div>
             <div className={styles.footer}>abibas 2023</div>
