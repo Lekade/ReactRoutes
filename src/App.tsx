@@ -31,6 +31,9 @@ function App() {
                     <S.NavWrapper><NavLink to={PATH.PRICES}>
                         Prices
                     </NavLink></S.NavWrapper>
+                    <S.NavWrapper><NavLink to={PATH.PROTECTED}>
+                        ProtectedPage
+                    </NavLink></S.NavWrapper>
 
                     {/*<div><NavLink className={({ isActive}) =>*/}
                     {/*    isActive ? styles.activeNavLink : styles.navLink*/}
