@@ -9,14 +9,27 @@ import {S} from "./components/pages/_styles"
 import Model from "./components/pages/Model";
 import {Prices} from "./components/pages/Prices";
 import {PATH} from "./routes/router";
+import { useNavigate } from "react-router-dom";
 
 
 function App() {
-
+    const navigate = useNavigate()
+    const navigateHandler = () => {
+        navigate(-1)
+    }
 
     return (
         <div>
-            <div className={styles.header}><h1>HEADER</h1></div>
+            <div className={styles.header}>
+                <h1>HEADER</h1>
+                <div className={styles.HorizontalNavigation}>
+                    <NavLink  to={"/"} className={styles.LinkLikeButton}>
+                        main page
+                    </NavLink>
+                    <button className={styles.ButtonLikeLink} onClick={navigateHandler}>back</button>
+                </div>
+
+            </div>
             <div className={styles.body}>
                 <div className={styles.nav}>
                     <S.NavWrapper><NavLink  to={PATH.ADIDAS}>
